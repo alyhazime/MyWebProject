@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Customer Feedback</title>
+</head>
+
+<body>
+    <header>
+        <h1>Your Feedback Matters</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="menu.html">Our Menu</a></li>
+            <li><a href="offers.html"> Special Offers</a></li>
+            <li><a href="Feedback.html">Testimonials and Reviews</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Share Your Experience</h2>
+        <form id="feedbackForm" action="submit_feedback.php" method="post" enctype="multipart/form-data" onsubmit="return checkRating()">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="feedback">Your Feedback:</label>
+            <textarea id="feedback" name="feedback" rows="4" required></textarea><br>
+
+            <label for="image">Insert Image you took it during your vists(optional):</label>
+            <input type="file" id="image" name="image" accept="image/*"><br>
+
+            <label for="rating">Rate Your Experience (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+
+            <div id="phoneContainer" style="display: none;">
+                <h2>Your experience was poor. We'll work on improving.</h2>
+                <h3>Please leave your phone number inorder to text you sooner as possible to fix the iisue:</h3>
+                <label for="phone">Your Phone Number:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{8}" placeholder="Enter your phone number">
+            </div>
+
+            <button type="submit" id="mySubmit">Submit</button>
+
+            <div id="messageContainer"></div>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2023 Coffee Shop</p>
+    </footer>
+
+    <script>
+        function checkRating() {
+    var rating = parseInt(document.getElementById("rating").value);
+    var message = "";
+
+    switch (rating) {
+        case 1:
+            document.getElementById("phoneContainer").style.display = "block";
+            break;
+        case 2:
+            document.getElementById("phoneContainer").style.display = "block";
+            break;
+        case 3:
+            message = "Your experience was good. Thank you for your positive feedback.";
+            break;
+        case 4:
+            message = "Your experience was very good. We're glad you enjoyed it.";
+            break;
+        case 5:
+            message = "Your experience was excellent. Thank you for your 5-star rating!";
+            break;
+        default:
+            message = "Invalid rating.";
+    }
+
+    document.getElementById("messageContainer").innerHTML = message;
+
+    return false;
+}
+    </script>
+</body>
+
+</html>
